@@ -13,27 +13,36 @@
 - ActiveRecord
 
 ## Django ORM
-- データ作成（レコード追加）
+# モデル定義
 ```python
-new_book = Book(title="Python実践", author="佐藤", published_date="2024-01-01")
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    published_date = models.DateField()
+
+    def __str__(self):
+        return self.title
+```
+
+- データ追加
+```python
+new_book = Book(title='Django for Beginners', author='John Smith', published_date='2022-01-01')
 new_book.save()
 ```
-- データ取得（全件）
-```python
-books_by_sato = Book.objects.filter(author="佐藤")
-```
-- データ取得（条件付き）
+- データ取得（すべて）
 ```python
 books = Book.objects.all()
 ```
+- データ取得（条件付き）
+```python
+book = Book.objects.get(pk=1)
+```
 - データ更新
 ```python
-book = Book.objects.get(id=1)
-book.title = "改訂版 Python実践"
+book.title = 'Django for Experts'
 book.save()
 ```
 - データ削除
 ```python
-book = Book.objects.get(id=1)
 book.delete()
 ```
