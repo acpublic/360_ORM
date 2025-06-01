@@ -13,7 +13,7 @@
 - ActiveRecord
 
 ## Django ORM
-# モデル定義
+- モデル定義
 ```python
 class Book(models.Model):
     title = models.CharField(max_length=200)
