@@ -46,3 +46,15 @@ book.save()
 ```python
 book.delete()
 ```
+- フィルタリング
+```python
+books = Book.objects.filter(author__name='John Smith')
+```
+- ソート（昇順）
+```python
+books = Book.objects.order_by('published_date')
+```
+- ソート（降順）
+```python
+books = Book.objects.order_by('-published_date')
+```
