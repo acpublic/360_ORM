@@ -16,13 +16,13 @@
 - モデル定義
 ```python
 class User(Base):
-    __tablename__ = "user"  # テーブル名を指定
+    __tablename__ = "user"
     user_id = Column(Integer, primary_key=True)
     first_name = Column(String(255))
     last_name = Column(String(255))
     age = Column(Integer)
 
-    def full_name(self):  # フルネームを返すメソッド
+    def full_name(self):
         return f"{self.first_name} {self.last_name}"
 ```
 - DB作成
@@ -44,13 +44,13 @@ session.commit()
 ```
 - UPDATE
 ```python
-user_u = session.query(User).get(min_id) # user_idの最小のレコードを対象
+user_u = session.query(User).get(min_id)
 user_u.age = 10
 session.commit()
 ```
 - DELETE
 ```python
-user_d = session.query(User).get(min_id) # user_idの最小のレコードを対象
+user_d = session.query(User).get(min_id)
 session.delete(user_d)
 session.commit()
 ```
