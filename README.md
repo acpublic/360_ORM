@@ -12,6 +12,53 @@
 ### Ruby
 - ActiveRecord
 
+## SQLAlchemy
+- モデル定義
+```python
+class User(Base):
+    __tablename__ = "user"  # テーブル名を指定
+    user_id = Column(Integer, primary_key=True)
+    first_name = Column(String(255))
+    last_name = Column(String(255))
+    age = Column(Integer)
+
+    def full_name(self):  # フルネームを返すメソッド
+        return f"{self.first_name} {self.last_name}"
+```
+- DB作成
+```python
+engine = create_engine('sqlite:///test.db', echo=True)
+
+Base.metadata.create_all(engine)
+```
+- DB接続
+```python
+SessionClass = sessionmaker(engine)
+session = SessionClass()
+```
+- INSERT
+```python
+user_i = User(first_name="first_a", last_name="last_a", age=20)
+session.add(user_i)
+session.commit()
+```
+- UPDATE
+```python
+user_u = session.query(User).get(min_id) # user_idの最小のレコードを対象
+user_u.age = 10
+session.commit()
+```
+- DELETE
+```python
+user_d = session.query(User).get(min_id) # user_idの最小のレコードを対象
+session.delete(user_d)
+session.commit()
+```
+- CLOSE
+```python
+session.close()
+```
+
 ## Django ORM
 - モデル定義
 ```python
